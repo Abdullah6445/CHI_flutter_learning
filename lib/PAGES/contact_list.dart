@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ContactList extends StatefulWidget {
   const ContactList({super.key});
@@ -10,14 +11,34 @@ class ContactList extends StatefulWidget {
 class _ContactListState extends State<ContactList> {
   // List<String> users = ["abdullah", "maaz", "ali", "talha"];
 
-  List<String> contact = [
+  List<String> contactNameList = [
     "abdullah",
     "maaz",
     "ali",
-    "talha",
-    "hadi",
+  ];
+  List<String> contactNumberList = [
+    "0111",
+    "0111",
+    "0111",
   ];
   int number = 0;
+
+  TextEditingController contacts_name_Controller = TextEditingController();
+  TextEditingController contacts_number_Controller = TextEditingController();
+
+  GlobalKey<FormState> form_key = GlobalKey<FormState>();
+  validate() {
+    if (form_key.currentState!.validate()) {
+      debugPrint("OK");
+
+      contactNameList.add(contacts_name_Controller.text);
+      contactNumberList.add(contacts_number_Controller.text);
+      Navigator.pop(context);
+      setState(() {});
+    } else {
+      debugPrint("Not OK");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +46,96 @@ class _ContactListState extends State<ContactList> {
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            setState(() {
-              number++;
-            });
-            contact.add("user $number");
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: Text("ADD Contact"),
+                  content: Container(
+                    height: MediaQuery.of(context).size.height * .3,
+                    child: Form(
+                      key: form_key,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            controller: contacts_name_Controller,
+                            validator: (value) {
+                              if (value == null || value.trimLeft().isEmpty) {
+                                return "requried";
+                              }
+                              return null;
+                            },
+                            onChanged: (value) {
+                              debugPrint(value);
+                            },
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              labelText: "Enter your name",
+                              hintText: "Enter name here",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            controller: contacts_number_Controller,
+                            validator: (value) {
+                              if (value == null || value.trimLeft().isEmpty) {
+                                return "requried";
+                              }
+                              return null;
+                            },
+                            onChanged: (value) {
+                              debugPrint(value);
+                            },
+                            keyboardType: TextInputType.phone,
+                            decoration: InputDecoration(
+                              labelText: "Enter your contact",
+                              hintText: "Enter contact here",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  actions: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text("Cancel"),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              validate();
+                            },
+                            child: Text("ADD"),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                );
+              },
+            );
           },
           child: Icon(Icons.add),
         ),
@@ -89,22 +196,56 @@ class _ContactListState extends State<ContactList> {
                         Icons.phone_callback_sharp,
                         color: Colors.green,
                       ),
-                      title: Text(contact[index].toString()),
+                      title: Text(
+                        contactNameList[index].toString(),
+                      ),
                       subtitle: Text(
-                        "Mobile",
+                        contactNumberList[index].toString(),
                         style: TextStyle(fontSize: 12),
                       ),
                       trailing: Container(
-                        width: 100,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Yesterday"),
-                            // SizedBox(
-                            //   width: 5,
-                            // ),
-                            Icon(Icons.info_outline),
-                          ],
+                        color: Colors.amber,
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text("Yesterday"),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  debugPrint("selected index edit");
+                                },
+                                child: Icon(
+                                  Icons.edit,
+                                  color: Colors.green,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    contactNameList.removeAt(index);
+                                    contactNumberList.removeAt(index);
+                                  });
+                                  debugPrint("selected index deleted");
+                                },
+                                child: Icon(
+                                  Icons.delete,
+                                  color: Colors.red,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Icon(Icons.info_outline),
+                            ],
+                          ),
                         ),
                       ),
                     );
@@ -112,7 +253,7 @@ class _ContactListState extends State<ContactList> {
                   separatorBuilder: (context, index) {
                     return Divider();
                   },
-                  itemCount: contact.length),
+                  itemCount: contactNameList.length),
             ),
           ],
         ),
