@@ -1,6 +1,7 @@
 import 'package:firebase_project_practice/PAGES/contact_list.dart';
 import 'package:firebase_project_practice/PAGES/easyPaisa.dart';
 import 'package:firebase_project_practice/PAGES/easypaisa_page.dart';
+import 'package:firebase_project_practice/PAGESS/dash_board.dart';
 import 'package:flutter/material.dart';
 
 import 'dashboard/dashboard_vu.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         useMaterial3: false,
       ),
-      home: ContactList(),
+      home: DashBoard(),
     );
   }
 }

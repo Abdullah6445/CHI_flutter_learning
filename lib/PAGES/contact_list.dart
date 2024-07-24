@@ -21,6 +21,20 @@ class _ContactListState extends State<ContactList> {
     "0111",
     "0111",
   ];
+
+  String? name, desc, time;
+  String onNameSave(String newName) {
+    return name = newName;
+  }
+
+  String onDescSave(String newName) {
+    return name = newName;
+  }
+
+  String onTimeSave(String newName) {
+    return name = newName;
+  }
+
   int number = 0;
 
   TextEditingController contacts_name_Controller = TextEditingController();
@@ -33,8 +47,13 @@ class _ContactListState extends State<ContactList> {
 
       contactNameList.add(contacts_name_Controller.text);
       contactNumberList.add(contacts_number_Controller.text);
+
+      setState(() {
+        contacts_name_Controller.text = "";
+        contacts_number_Controller.text = "";
+      });
+
       Navigator.pop(context);
-      setState(() {});
     } else {
       debugPrint("Not OK");
     }
@@ -54,10 +73,14 @@ class _ContactListState extends State<ContactList> {
                   content: Container(
                     height: MediaQuery.of(context).size.height * .3,
                     child: Form(
+                      autovalidateMode: AutovalidateMode.always,
                       key: form_key,
                       child: Column(
                         children: [
                           TextFormField(
+                            onSaved: (name) {
+                              onNameSave(name!);
+                            },
                             controller: contacts_name_Controller,
                             validator: (value) {
                               if (value == null || value.trimLeft().isEmpty) {
@@ -83,6 +106,9 @@ class _ContactListState extends State<ContactList> {
                             height: 20,
                           ),
                           TextFormField(
+                            onSaved: (name) {
+                              onNameSave(name!);
+                            },
                             controller: contacts_number_Controller,
                             validator: (value) {
                               if (value == null || value.trimLeft().isEmpty) {
@@ -204,7 +230,7 @@ class _ContactListState extends State<ContactList> {
                         style: TextStyle(fontSize: 12),
                       ),
                       trailing: Container(
-                        color: Colors.amber,
+                        // color: Colors.amber,
                         width: MediaQuery.of(context).size.width / 2,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -217,6 +243,143 @@ class _ContactListState extends State<ContactList> {
                               ),
                               GestureDetector(
                                 onTap: () {
+                                  // ,,
+                                  // String nameVariable;
+
+                                  // TextEditingController nameVariable =
+                                  //     contactNameList[index]
+                                  //         as TextEditingController;
+                                  // contacts_name_Controller =
+                                  //     contactNameList[index]
+                                  //         as TextEditingController;
+                                  // contacts_name_Controller.text = contactNameList[index];
+                                  // contacts_number_Controller.text = contactNumberList[index];
+
+                                  TextEditingController neww_name_controller =
+                                      TextEditingController(
+                                          text: contactNameList[index]);
+
+                                  TextEditingController neww_number_controller =
+                                      TextEditingController(
+                                          text: contactNumberList[index]);
+
+                                  contactNameList[index] ==
+                                      neww_name_controller.text;
+
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: Text("ADD Contact"),
+                                        content: Container(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .3,
+                                          child: Form(
+                                            autovalidateMode:
+                                                AutovalidateMode.always,
+                                            key: form_key,
+                                            child: Column(
+                                              children: [
+                                                TextFormField(
+                                                  controller:
+                                                      neww_name_controller,
+                                                  validator: (value) {
+                                                    if (value == null ||
+                                                        value
+                                                            .trimLeft()
+                                                            .isEmpty) {
+                                                      return "requried";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  onChanged: (value) {
+                                                    debugPrint(value);
+                                                  },
+                                                  keyboardType:
+                                                      TextInputType.text,
+                                                  decoration: InputDecoration(
+                                                    labelText:
+                                                        "Enter your name",
+                                                    border: OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                        Radius.circular(10),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 20,
+                                                ),
+                                                TextFormField(
+                                                  controller:
+                                                      neww_number_controller,
+                                                  validator: (value) {
+                                                    if (value == null ||
+                                                        value
+                                                            .trimLeft()
+                                                            .isEmpty) {
+                                                      return "requried";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  onChanged: (value) {
+                                                    debugPrint(value);
+                                                  },
+                                                  onSaved: (dec) {
+                                                    onDescSave(dec!);
+                                                  },
+                                                  keyboardType:
+                                                      TextInputType.phone,
+                                                  decoration: InputDecoration(
+                                                    labelText:
+                                                        "Enter your contact",
+                                                    hintText:
+                                                        "Enter contact here",
+                                                    border: OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                        Radius.circular(10),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        actions: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              children: [
+                                                TextButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Text("Cancel"),
+                                                ),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                ElevatedButton(
+                                                  onPressed: () {
+                                                    validate();
+                                                  },
+                                                  child: Text("ADD"),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      );
+                                    },
+                                  );
+
                                   debugPrint("selected index edit");
                                 },
                                 child: Icon(
