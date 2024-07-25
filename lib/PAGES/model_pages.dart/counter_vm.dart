@@ -1,4 +1,5 @@
 import 'package:firebase_project_practice/PAGES/model_pages.dart/model_class.dart';
+
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -11,12 +12,19 @@ class ViewModel extends BaseViewModel {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  int? editingIndex;
   onvalidateVUVM(BuildContext context) {
     if (formKey.currentState!.validate()) {
       debugPrint("OK");
-      add();
+      if (editingIndex == null) {
+        add();
+      } else {
+        listItems[editingIndex!] = ModelClassForVUVM(
+            name: nameController.text, number: numberController.text);
+      }
       nameController.clear();
       numberController.clear();
+      editingIndex = null;
       Navigator.pop(context);
     } else {
       debugPrint("Not OK");
@@ -34,20 +42,6 @@ class ViewModel extends BaseViewModel {
     listItems.add(ModelClassForVUVM(
         name: nameController.text, number: numberController.text));
   }
-
-  // onEditOne(int index) {
-  //   formKey.currentState!.save();
-  //   listItems[index].name = nameController.text ;
-  //   listItems[index].number = numberController.text ;
-  //   notifyListeners();
-
-  //   // if (index != null) {
-  //   //   nameController.text = listItems[index].name;
-  //   //   numberController.text = listItems[index].number;
-  //   // }
-  //   notifyListeners();
-  //   // editIndex = index;
-  // }
 
   remove(int index) {
     listItems.removeAt(index);
