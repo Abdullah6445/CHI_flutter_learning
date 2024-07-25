@@ -10,6 +10,8 @@ class DashBoard extends StatefulWidget {
 
 class _DashBoardState extends State<DashBoard> {
   int indexx = 0;
+  Color? colorrr = Colors.blue;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -21,13 +23,13 @@ class _DashBoardState extends State<DashBoard> {
               height: MediaQuery.of(context).size.height * .2,
               width: double.infinity,
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.fromLTRB(8, 15, 8, 0),
                 child: Column(
                   children: [
                     const Text(
                       "CRUD OPERATIONS",
                       style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
                       height: 30,
@@ -35,32 +37,190 @@ class _DashBoardState extends State<DashBoard> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        TextButton(
-                            onPressed: () {
+                        // ElevatedButton(
+                        //   style: ElevatedButton.styleFrom(
+                        //       backgroundColor: colorsList[0]),
+                        //   onPressed: () {
+                        //     setState(() {
+                        //       indexx = 0;
+                        //       colorsList[0] = Colors.yellow;
+
+                        //       debugPrint("$indexx");
+                        //     });
+                        //   },
+                        //   child: Icon(Icons.abc),
+                        // ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: colorsList[0]),
+                          onPressed: () {
+                            setState(() {
                               indexx = 0;
-                              setState(() {
-                                debugPrint("$indexx");
-                              });
-                            },
-                            child: const Text(
-                              "All",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.black,
-                              ),
-                            )),
-                        TextButton(
-                            onPressed: () {
+
+                              colorsList[0] = Colors.black;
+
+                              colorsList[1] = Colors.blue;
+
+                              colorsList[2] = Colors.blue;
+                              colorsList[3] = Colors.blue;
+
+                              debugPrint("$indexx");
+                            });
+                          },
+                          child: Icon(Icons.abc),
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: colorsList[1]),
+                          onPressed: () {
+                            setState(() {
                               indexx = 1;
-                              setState(() {
-                                debugPrint("$indexx");
-                              });
-                            },
-                            child: const Text(
-                              "Missed Calls",
-                              style:
-                                  TextStyle(fontSize: 25, color: Colors.black),
-                            )),
+
+                              colorsList[0] = Colors.blue;
+
+                              colorsList[1] = Colors.black;
+
+                              colorsList[2] = Colors.blue;
+                              colorsList[3] = Colors.blue;
+
+                              debugPrint("$indexx");
+                            });
+                          },
+                          child: Icon(Icons.abc),
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: colorsList[2]),
+                          onPressed: () {
+                            setState(() {
+                              indexx = 2;
+
+                              colorsList[0] = Colors.blue;
+
+                              colorsList[1] = Colors.blue;
+
+                              colorsList[2] = Colors.black;
+                              colorsList[3] = Colors.blue;
+
+                              debugPrint("$indexx");
+                            });
+                          },
+                          child: Icon(Icons.abc),
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: colorsList[3]),
+                          onPressed: () {
+                            setState(() {
+                              indexx = 3;
+
+                              colorsList[0] = Colors.blue;
+
+                              colorsList[1] = Colors.blue;
+
+                              colorsList[2] = Colors.blue;
+                              colorsList[3] = Colors.black;
+
+                              debugPrint("$indexx");
+                            });
+                          },
+                          child: Icon(Icons.abc),
+                        ),
+
+                        // ElevatedButton(
+                        //   style: ElevatedButton.styleFrom(
+                        //       backgroundColor: colorsList[0]),
+                        //   onPressed: () {
+                        //     setState(() {
+                        //       indexx = 0;
+                        //       colorsList[0] = Colors.yellow;
+
+                        //       debugPrint("$indexx");
+                        //     });
+                        //   },
+                        //   child: Icon(Icons.abc),
+                        // ),
+                        // ElevatedButton(
+                        //   style: ElevatedButton.styleFrom(
+                        //       backgroundColor: colorsList[0]),
+                        //   onPressed: () {
+                        //     setState(() {
+                        //       indexx = 0;
+                        //       colorsList[0] = Colors.yellow;
+
+                        //       debugPrint("$indexx");
+                        //     });
+                        //   },
+                        //   child: Icon(Icons.abc),
+                        // ),
+
+                        // ),
+                        // ElevatedButton(
+                        //   style: ElevatedButton.styleFrom(
+                        //       backgroundColor: Colors.amber),
+                        //   onPressed: () {
+                        //     setState(() {
+                        //       indexx = 2;
+                        //       colorrr = colorsList[indexx];
+
+                        //       debugPrint("$indexx");
+                        //     });
+                        //   },
+                        //   child: Icon(Icons.abc),
+                        // ),
+                        // ElevatedButton(
+                        //   style: ElevatedButton.styleFrom(
+                        //       backgroundColor: colorrr),
+                        //   onPressed: () {
+                        //     setState(() {
+                        //       indexx = 2;
+                        //       colorrr = Colors.amber;
+
+                        //       debugPrint("$indexx");
+                        //     });
+                        //   },
+                        //   child: Icon(Icons.abc),
+                        // ),
+                        // ElevatedButton(
+                        //   style: ElevatedButton.styleFrom(
+                        //       backgroundColor: colorrr),
+                        //   onPressed: () {
+                        //     setState(() {
+                        //       indexx = 3;
+                        //       colorrr = Colors.amber;
+
+                        //       debugPrint("$indexx");
+                        //     });
+                        //   },
+                        //   child: Icon(Icons.abc),
+                        // ),
+                        // TextButton(
+                        //     onPressed: () {
+                        //       indexx = 0;
+
+                        //       setState(() {
+                        //         debugPrint("$indexx");
+                        //       });
+                        //     },
+                        //     child: const Text(
+                        //       "All",
+                        //       style: TextStyle(
+                        //         fontSize: 20,
+                        //         color: Colors.black,
+                        //       ),
+                        //     )),
+                        // TextButton(
+                        //     onPressed: () {
+                        //       indexx = 1;
+                        //       setState(() {
+                        //         debugPrint("$indexx");
+                        //       });
+                        //     },
+                        //     child: const Text(
+                        //       "Missed Calls",
+                        //       style:
+                        //           TextStyle(fontSize: 25, color: Colors.black),
+                        //     )),
                       ],
                     )
                   ],
@@ -69,47 +229,50 @@ class _DashBoardState extends State<DashBoard> {
             ),
             Expanded(
               child: SizedBox(
-                width: double.infinity,
-                child: indexx == 0
-                    ? ListView.separated(
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            title: Text(contactsList[index].name),
-                            subtitle: Text(contactsList[index].number),
-                            trailing: SizedBox(
-                              width: MediaQuery.of(context).size.width / 2,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  IconButton(
-                                      onPressed: () {
-                                        showDialogMethod(index: index);
-                                      },
-                                      icon: const Icon(
-                                        Icons.edit,
-                                        color: Colors.green,
-                                      )),
-                                  IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          contactsList.removeAt(index);
-                                        });
-                                      },
-                                      icon: const Icon(
-                                        Icons.delete,
-                                        color: Colors.red,
-                                      )),
-                                ],
+                  width: double.infinity,
+                  child: indexx == 0
+                      ? ListView.separated(
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              title: Text(contactsList[index].name),
+                              subtitle: Text(contactsList[index].number),
+                              trailing: SizedBox(
+                                width: MediaQuery.of(context).size.width / 2,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    IconButton(
+                                        onPressed: () {
+                                          showDialogMethod(index: index);
+                                        },
+                                        icon: const Icon(
+                                          Icons.edit,
+                                          color: Colors.green,
+                                        )),
+                                    IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            contactsList.removeAt(index);
+                                          });
+                                        },
+                                        icon: const Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        )),
+                                  ],
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                        separatorBuilder: (context, index) {
-                          return const Divider();
-                        },
-                        itemCount: contactsList.length)
-                    : const WidgetTwo(),
-              ),
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return const Divider();
+                          },
+                          itemCount: contactsList.length)
+                      : indexx == 1
+                          ? WidgetTwo()
+                          : indexx == 2
+                              ? WidgetThree()
+                              : WidgetFour()),
             ),
           ],
         ),
@@ -128,19 +291,30 @@ class _DashBoardState extends State<DashBoard> {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  int? editIndex;
+
+  List<Color> colorsList = [
+    Colors.black,
+    Colors.blue,
+    Colors.blue,
+    Colors.blue,
+  ];
+
   onvalidate() {
     if (formKey.currentState!.validate()) {
       debugPrint("ok");
 
-      // String nameee;
-      // String numberrrr;
+      if (editIndex != null) {
+        contactsList[editIndex!] = ModelClass(
+            name: nameController.text, number: numberController.text);
+      } else {
+        contactsList.add(ModelClass(
+            name: nameController.text, number: numberController.text));
+      }
 
-      // contactsList[index].name == nameee;
-
-      contactsList.add(
-          ModelClass(name: nameController.text, number: numberController.text));
       nameController.clear();
       numberController.clear();
+      editIndex = null;
 
       setState(() {});
       Navigator.pop(context);
@@ -190,6 +364,11 @@ class _DashBoardState extends State<DashBoard> {
     if (index != null) {
       nameController.text = contactsList[index].name;
       numberController.text = contactsList[index].number;
+      editIndex = index;
+    } else {
+      nameController.clear();
+      numberController.clear();
+      editIndex = null;
     }
     showDialog(
         context: context,
@@ -290,7 +469,6 @@ class _WidgetTwoState extends State<WidgetTwo> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.green.shade200,
       child: const Center(
         child: Text(
           "data 2",
@@ -302,15 +480,54 @@ class _WidgetTwoState extends State<WidgetTwo> {
   }
 }
 
+/////////////
+class WidgetThree extends StatefulWidget {
+  const WidgetThree({super.key});
+
+  @override
+  State<WidgetThree> createState() => _WidgetThreeState();
+}
+
+class _WidgetThreeState extends State<WidgetThree> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: const Center(
+        child: Text(
+          "data 3",
+          style: TextStyle(
+              fontSize: 20, color: Colors.black, fontWeight: FontWeight.w900),
+        ),
+      ),
+    );
+  }
+}
+
+class WidgetFour extends StatefulWidget {
+  const WidgetFour({super.key});
+
+  @override
+  State<WidgetFour> createState() => _WidgetFourState();
+}
+
+class _WidgetFourState extends State<WidgetFour> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: const Center(
+        child: Text(
+          "data 4",
+          style: TextStyle(
+              fontSize: 20, color: Colors.black, fontWeight: FontWeight.w900),
+        ),
+      ),
+    );
+  }
+}
 /////////////////
 //////////////////
 ///
 ///
-
-
-
-
-
 
 // class WidgetOne extends StatefulWidget {
 //   const WidgetOne({
@@ -324,10 +541,8 @@ class _WidgetTwoState extends State<WidgetTwo> {
 // class _WidgetOneState extends State<WidgetOne> {
 //   @override
 //   Widget build(BuildContext context) {
-//     return 
+//     return
 //   }
-
-  
 
 //   showDialogMethod() {
 //     showDialog(
