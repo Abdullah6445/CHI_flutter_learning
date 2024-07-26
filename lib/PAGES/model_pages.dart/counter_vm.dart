@@ -38,6 +38,10 @@ class ViewModel extends BaseViewModel {
     ModelClassForVUVM(name: "AB", number: "923317012500"),
   ];
 
+  noti() {
+    notifyListeners();
+  }
+
   add() {
     listItems.add(ModelClassForVUVM(
         name: nameController.text, number: numberController.text));

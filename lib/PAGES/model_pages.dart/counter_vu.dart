@@ -60,6 +60,11 @@ class ListViewVUVM extends StackedView<ViewModel> {
       viewModel.numberController.text = viewModel.listItems[index].number;
 
       viewModel.editingIndex = index;
+    } else {
+      viewModel.nameController.text == "";
+      viewModel.numberController.text == "";
+
+      viewModel.editingIndex = null;
     }
     return showDialog(
       context: context,
@@ -125,6 +130,11 @@ class ListViewVUVM extends StackedView<ViewModel> {
                 children: [
                   TextButton(
                     onPressed: () {
+                      if (index != null) {
+                        viewModel.nameController.clear();
+                        viewModel.numberController.clear();
+                      }
+
                       Navigator.pop(context);
                     },
                     child: const Text("Cancel"),
@@ -136,7 +146,7 @@ class ListViewVUVM extends StackedView<ViewModel> {
                     onPressed: () {
                       viewModel.onvalidateVUVM(context);
                     },
-                    child: Text("ADD"),
+                    child: Text(index == null ? "ADD" : "update"),
                   ),
                 ],
               ),

@@ -1,4 +1,4 @@
-import 'package:firebase_project_practice/PAGES/model_pages.dart/counter_vu.dart';
+import 'package:firebase_project_practice/Tasks/main_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         useMaterial3: false,
       ),
-      home: ListViewVUVM(),
+      home: MainPage(),
     );
   }
 }
